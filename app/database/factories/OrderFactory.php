@@ -19,7 +19,6 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-
             'customer' => $this->faker->name(),
             'warehouse_id' => $this->faker->numberBetween(1, 5),
             'status' => $this->faker->randomElement(['active', 'completed', 'canceled']),

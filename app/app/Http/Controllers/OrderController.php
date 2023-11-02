@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\OrderUpdateRequest;
@@ -24,6 +25,9 @@ class OrderController extends Controller
 
     /**
      * Создание заказа (в заказе может быть несколько позиций с разным количеством)
+     *
+     * @param OrderRequest $request
+     * @return JsonResponse
      */
     public function store(OrderRequest $request)
     {
@@ -45,6 +49,10 @@ class OrderController extends Controller
 
     /**
      * Обновление заказа (данные покупателя и список позиций, но не статус)
+     *
+     * @param OrderUpdateRequest $request
+     * @param int $id
+     * @return JsonResponse
      */
     public function update(OrderUpdateRequest $request, int $id)
     {
@@ -70,6 +78,9 @@ class OrderController extends Controller
 
     /**
      * завершение заказа
+     *
+     * @param int $id
+     * @return JsonResponse
      */
     public function completed(int $id)
     {
@@ -81,6 +92,9 @@ class OrderController extends Controller
 
     /**
      * отмена заказа
+     *
+     * @param int $id
+     * @return JsonResponse
      */
     public function canceled(int $id)
     {
@@ -94,6 +108,9 @@ class OrderController extends Controller
 
     /**
      * возобновление заказа
+     *
+     * @param int $id
+     * @return JsonResponse
      */
     public function active(int $id)
     {
