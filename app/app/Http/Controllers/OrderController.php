@@ -11,15 +11,20 @@ use App\Http\Requests\OrderUpdateRequest;
 
 class OrderController extends Controller
 {
+    /**
+     * Получение списка заказов (с фильтрами и настраиваемой пагинацией)
+     */
     public function index()
     {
         return Order::with('orderItems')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'asc')
             ->filterByQueryString()
-            ->paginate(5);
+            ->paginate(20);
     }
 
-
+    /**
+     * Создание заказа (в заказе может быть несколько позиций с разным количеством)
+     */
     public function store(OrderRequest $request)
     {
         DB::beginTransaction();
@@ -38,7 +43,9 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order created.'], 201);
     }
 
-
+    /**
+     * Обновление заказа (данные покупателя и список позиций, но не статус)
+     */
     public function update(OrderUpdateRequest $request, int $id)
     {
         DB::beginTransaction();
@@ -61,7 +68,9 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order updated.'], 201);
     }
 
-
+    /**
+     * завершение заказа
+     */
     public function completed(int $id)
     {
         $order = Order::find($id);
@@ -70,7 +79,9 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order is completed'], 200);
     }
 
-
+    /**
+     * отмена заказа
+     */
     public function canceled(int $id)
     {
 
@@ -81,7 +92,9 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order canceled'], 200);
     }
 
-
+    /**
+     * возобновление заказа
+     */
     public function active(int $id)
     {
         $order = Order::find($id);

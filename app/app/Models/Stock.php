@@ -20,9 +20,6 @@ class Stock extends Model
     {
         parent::boot();
         static::saved(function ($stock) { //  $stock - это СКЛАД.остаток минус ТОВАР.кол-во
-            //print_r($stock->getOriginal('stock'));
-            //print_r($stock);
-            //print_r($stock->id);
 
             $difference = $stock->getOriginal('stock') - $stock->stock;
 

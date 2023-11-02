@@ -2,6 +2,10 @@
 
 namespace App\Models\Enums;
 
+
+/**
+ * статус заказа
+ */
 enum StatusState: string
 {
     case ACTIVE = 'active';

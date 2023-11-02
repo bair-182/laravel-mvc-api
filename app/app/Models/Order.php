@@ -24,7 +24,7 @@ class Order extends Model
     use HasFilters;
 
     public $timestamps = false;
-    const UPDATED_AT = 'completed_at';
+
 
     protected array $filters = [
         CreatedAfterFilter::class,

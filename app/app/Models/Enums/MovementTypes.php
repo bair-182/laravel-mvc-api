@@ -2,6 +2,11 @@
 
 namespace App\Models\Enums;
 
+/**
+ * типы движения товаров
+ *
+ * Движение - любое изменение количества товара на остатке склада.
+ */
 enum MovementTypes: string
 {
     //enum('selling', 'returning', 'income', 'transfer', 'write_off')

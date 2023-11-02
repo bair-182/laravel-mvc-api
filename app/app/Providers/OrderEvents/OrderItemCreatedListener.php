@@ -16,7 +16,10 @@ class OrderItemCreatedListener
 
 
     /**
-     * Handle the event.
+     * списываем с остатка на складе позиции из заказа
+     *
+     * @param OrderItemCreated $event объект  события при создании заказа
+     * @return \App\Models\OrderItem
      */
     public function handle(OrderItemCreated $event)
     {
@@ -27,8 +30,10 @@ class OrderItemCreatedListener
             'product_id' => $event->orderItem->product_id
         ])->first();
 
-        $stock->stock = $stock->stock - $event->orderItem->count; // списание с остатка
-        $stock->save();
+        if (isset($stock->stock)) {
+            $stock->stock = $stock->stock - $event->orderItem->count; // списание с остатка
+            $stock->save();
+        }
 
         return $event->orderItem;
     }

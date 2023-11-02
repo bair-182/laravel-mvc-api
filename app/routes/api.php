@@ -25,7 +25,6 @@ Route::put('/orders/{id}/canceled', [\App\Http\Controllers\OrderController::clas
 Route::put('/orders/{id}/active', [\App\Http\Controllers\OrderController::class, 'active']);
 
 Route::get('/movements', [\App\Http\Controllers\ProductMovementController::class, 'index']);
-
 Route::get('/stocks', [\App\Http\Controllers\StocksController::class, 'index']);
 
 

@@ -8,6 +8,6 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::with('stocks')->paginate(5);
+        return Product::with('stocks')->orderBy('id', 'asc')->paginate(20);
     }
 }

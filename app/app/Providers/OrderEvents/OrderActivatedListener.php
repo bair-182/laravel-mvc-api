@@ -16,11 +16,16 @@ class OrderActivatedListener
     }
 
     /**
-     * Handle the event.
+     * списываем с остатка при возобновлении заказа
+     *
+     * @param OrderStatus $event объект события при обновлении заказа
+     * @return \App\Models\Order
      */
     public function handle(OrderStatus $event)
     {
-        //print_r('HELLO WORLD from OrderCanceledListener.php');
+        /**
+         * блок кода сработает, если: СТАТУС был CANCELED, стал ACTIVE)
+         */
         if ($event->order->getOriginal('status') === 'canceled' && $event->order->status === 'active') {
 
             $warehouseId = $event->order->warehouse_id;

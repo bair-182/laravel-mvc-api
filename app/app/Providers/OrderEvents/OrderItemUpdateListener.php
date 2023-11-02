@@ -16,7 +16,10 @@ class OrderItemUpdateListener
 
 
     /**
-     * Handle the event.
+     * списываем или возвращаем на остаток на складе при обновлении заказа
+     *
+     * @param OrderItemUpdated $event объект события при обновлении заказа
+     * @return mixed
      */
     public function handle(OrderItemUpdated $event)
     {
